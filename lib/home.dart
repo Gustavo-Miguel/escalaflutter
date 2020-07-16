@@ -51,69 +51,71 @@ class _HomePageState extends State<HomePage> {
                   itemWidth: MediaQuery.of(context).size.width - 2 * 64,
                   layout: SwiperLayout.STACK,
                   itemBuilder: (context, index) {
-                    return Stack(
+                    return Column(
                       children: <Widget>[
-                        Image.asset(planets[index].iconImage),
-                        Column(
+                        Stack(
                           children: <Widget>[
-                            SizedBox(height: 100),
-                            Card(
-                              elevation: 8,
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(32.0),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(32.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    SizedBox(height: 100),
-                                    Text(
-                                      planets[index].name,
-                                      style: TextStyle(
-                                        fontFamily: 'Avenir',
-                                        fontSize: 44,
-                                        color: const Color(0xff47455f),
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    Text(
-                                      'Age',
-                                      style: TextStyle(
-                                        fontFamily: 'Avenir',
-                                        fontSize: 23,
-                                        color: primaryTextColor,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    SizedBox(height: 32),
-                                    Row(
+                            Column(
+                              children: <Widget>[
+                                SizedBox(height: 100),
+                                Card(
+                                  elevation: 8,
+                                  color: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(32.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(32.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
+                                        SizedBox(height: 100),
                                         Text(
-                                          'Know more',
+                                          planets[index].name,
                                           style: TextStyle(
                                             fontFamily: 'Avenir',
-                                            fontSize: 18,
-                                            color: secondaryTextColor,
+                                            fontSize: 44,
+                                            color: const Color(0xff47455f),
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        Text(
+                                          'Age',
+                                          style: TextStyle(
+                                            fontFamily: 'Avenir',
+                                            fontSize: 23,
+                                            color: primaryTextColor,
                                             fontWeight: FontWeight.w500,
                                           ),
                                           textAlign: TextAlign.left,
                                         ),
-                                        Icon(
-                                          Icons.arrow_forward,
-                                          color: secondaryTextColor,
+                                        SizedBox(height: 32),
+                                        Row(
+                                          children: <Widget>[
+                                            Text(
+                                              'Know more',
+                                              style: TextStyle(
+                                                fontFamily: 'Avenir',
+                                                fontSize: 18,
+                                                color: secondaryTextColor,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              textAlign: TextAlign.left,
+                                            ),
+                                            Icon(
+                                              Icons.arrow_forward,
+                                              color: secondaryTextColor,
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
-                        ),
+                            Image.asset(planets[index].iconImage),
 //                        Hero(
 //                          tag: planets[index].position,
 //                          child: Image.asset(planets[index].iconImage),
@@ -132,6 +134,8 @@ class _HomePageState extends State<HomePage> {
 //                            textAlign: TextAlign.left,
 //                          ),
 //                        ),
+                          ],
+                        ),
                       ],
                     );
                   },
