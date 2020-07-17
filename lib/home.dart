@@ -1,10 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 //import 'package:flutter_universe/detail_page.dart';
 import 'data.dart';
 import 'constant.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import '';
+import 'modal.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,6 +27,14 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  _openTransactionFormModal(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return Text("sodakp");
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +53,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: <Widget>[
               Container(
-                height: 500,
+                height: MediaQuery.of(context).size.height * 0.65,
                 padding: const EdgeInsets.only(left: 32),
                 child: Swiper(
                   itemCount: planets.length,
@@ -67,7 +76,8 @@ class _HomePageState extends State<HomePage> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(32.0),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: <Widget>[
                                         SizedBox(height: 100),
                                         Text(
@@ -116,24 +126,6 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             Image.asset(planets[index].iconImage),
-//                        Hero(
-//                          tag: planets[index].position,
-//                          child: Image.asset(planets[index].iconImage),
-//                        ),
-//                        Positioned(
-//                          right: 24,
-//                          bottom: 60,
-//                          child: Text(
-//                            planets[index].position.toString(),
-//                            style: TextStyle(
-//                              fontFamily: 'Avenir',
-//                              fontSize: 200,
-//                              color: primaryTextColor.withOpacity(0.08),
-//                              fontWeight: FontWeight.w900,
-//                            ),
-//                            textAlign: TextAlign.left,
-//                          ),
-//                        ),
                           ],
                         ),
                       ],
@@ -141,32 +133,78 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
               ),
+              Container(
+                alignment: Alignment.bottomRight,
+                padding: EdgeInsets.only(right: 15),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    FloatingActionButton(
+                      tooltip: 'Increment',
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            // retorna um objeto do tipo Dialog
+                            return SimpleDialog(
+                              title: new Text("Adicionar novo paciente."),
+                              backgroundColor: Colors.blue,
+                              elevation: 8,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(32.0),
+                              ),
+                              contentPadding: new EdgeInsets.only(top: 4,bottom: 25,left: 6,right: 6),
+                              children: <Widget>[
+                                Container(
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+//                                    borderRadius: BorderRadius.circular(4.0) ,
 
-//              Container(
-//                alignment: Alignment.bottomRight,
-//                height: 120.0,
-//                padding: EdgeInsets.only(right: 15),
-//                child: Column(
-//                  mainAxisSize: MainAxisSize.min,
-//                  children: <Widget>[
-//                    FloatingActionButton(
-//                      tooltip: 'Increment',
-//                      onPressed: _incrementCounter,
-//                      backgroundColor: Colors.blueAccent,
-//                      child: const Icon(Icons.add, size: 36.0),
-//                    ),
-//                    SizedBox(
-//                      height: 16.0,
-//                    ),
-//                    FloatingActionButton(
-//                      tooltip: 'Decrement',
-//                      onPressed: _decrementCounter,
-//                      backgroundColor: Colors.redAccent,
-//                      child: const Icon(Icons.remove, size: 36.0),
-//                    ),
-//                  ],
-//                ),
-//              ),
+                                  ),
+                                  padding: EdgeInsets.only(right: 15),
+                                  height: MediaQuery.of(context).size.height * 0.40,
+                                  child: Column(
+                                    children: <Widget>[
+                                      TextFormField(
+                                        decoration: const InputDecoration(
+                                          icon: Icon(Icons.person),
+                                          hintText: 'What do people call you?',
+                                          labelText: 'Name *',
+                                        ),
+                                        onSaved: (String value) {
+                                          // This optional block of code can be used to run
+                                          // code when the user saves the form.
+                                        },
+                                        validator: (String value) {
+                                          return value.contains('@')
+                                              ? 'Do not use the @ char.'
+                                              : null;
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      backgroundColor: Colors.blueAccent,
+                      child: const Icon(Icons.add, size: 36.0),
+                    ),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    FloatingActionButton(
+                      tooltip: 'Decrement',
+                      onPressed: _decrementCounter,
+                      backgroundColor: Colors.redAccent,
+                      child: const Icon(Icons.remove, size: 36.0),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ));
